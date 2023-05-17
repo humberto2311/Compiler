@@ -35,4 +35,7 @@ Numero = 0 | [1-9][0-9]*
 {Comentario} { return textColor(yychar, yylength(), new Color(146, 146, 146)); }
 {EspacioEnBlanco} { /*Ignorar*/ }
 
+cadena|numero|real
+{ return textColor(yychar, yylength(), new Color(0,0,255)); }
+
 . { /* Ignorar */ }

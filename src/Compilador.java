@@ -346,6 +346,39 @@ public class Compilador extends javax.swing.JFrame {
     private void syntacticAnalysis() {
         Grammar gramatica = new Grammar(tokens, errors);
 
+        gramatica.delete(new String[]{"ERROR","ERROR_1", "ERROR_2"}, 1);
+        /*agrupacion de valores*/
+
+        gramatica.group("integer","(IDENTIFICADOR_NUMERO ENTERO punto_coma)",true);
+        gramatica.group("integer", "IDENTIFICADOR_NUMERO ENTERO ", true, 2,
+       "Error intactico: falta PUNTA Y COMA [#,%]");
+        gramatica.group("integer", "ENTERO punto_coma", true, 2,
+            "Error intactico: falta TIPO DE VARIABLE [#,%]");
+
+
+        gramatica.group("arreglos","(IDENTIFICADOR_CADENA CADENA punto_coma)",true);
+        gramatica.group("arreglos", "IDENTIFICADOR_CADENA CADENA", true, 2,
+            "Error intactico: falta PUNTA Y COMA [#,%]");
+        gramatica.group("arreglos", " CADENA punto_coma", true, 2,
+            "Error intactico: falta TIPO DE VARIABLE [#,%]");
+        gramatica.group("arreglos", " CADENA ", true, 2,
+            "Error intactico: falta TIPO DE VARIABLE [#,%]");
+
+
+        gramatica.group("ALFA","(IDENTIFICADOR_REAL REAL punto_coma)",true);
+        gramatica.group("ALFA", "IDENTIFICADOR_REAL REAL", true, 2,
+            "Error intactico: falta PUNTA Y COMA [#,%]");
+        gramatica.group("ALFA", "REAL punto_coma", true, 2,
+            "Error intactico: falta TIPO DE VARIABLE [#,%]");
+
+
+        gramatica.group("DECLARAR","(DECLARE ALFA|DECLARE arreglos|DECLARE integer)",true);
+
+        gramatica.group("DECLARAR", "(ALFA|arreglos|integer)", true, 2,
+            "Error intactico: falta DECLARARLA [#,%]");
+
+
+
         /* Mostrar gramáticas */
         gramatica.show();
     }

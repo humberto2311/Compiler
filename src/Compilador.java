@@ -346,12 +346,14 @@ public class Compilador extends javax.swing.JFrame {
     private void syntacticAnalysis() {
         Grammar gramatica = new Grammar(tokens, errors);
 
-        gramatica.delete(new String[]{"ERROR","ERROR_1", "ERROR_2"}, 1);
+        gramatica.delete(new String[]{"ERROR", "ERROR_1", "ERROR_2"}, 1);
         /*agrupacion de valores*/
 
-        gramatica.group("integer","(IDENTIFICADOR_NUMERO ENTERO punto_coma)",true);
+        gramatica.group("integer", "(IDENTIFICADOR_NUMERO ENTERO punto_coma)", true);
         gramatica.group("integer", "IDENTIFICADOR_NUMERO ENTERO ", true, 2,
-       "Error intactico: falta PUNTA Y COMA [#,%]");
+            "Error intactico: falta PUNTA Y COMA [#,%]");
+        gramatica.group("integer", "IDENTIFICADOR_NUMERO", true, 2,
+            "Error intactico: falta el entero [#,%]");
         gramatica.group("integer", "ENTERO punto_coma", true, 2,
             "Error intactico: falta TIPO DE VARIABLE [#,%]");
 
@@ -361,6 +363,8 @@ public class Compilador extends javax.swing.JFrame {
             "Error intactico: falta PUNTA Y COMA [#,%]");
         gramatica.group("arreglos", " CADENA punto_coma", true, 2,
             "Error intactico: falta TIPO DE VARIABLE [#,%]");
+        gramatica.group("arreglos", "IDENTIFICADOR_CADENA", true, 2,
+            "Error intactico: falta TIPO DE VARIABLE [#,%]");
         gramatica.group("arreglos", " CADENA ", true, 2,
             "Error intactico: falta TIPO DE VARIABLE [#,%]");
 
@@ -368,6 +372,8 @@ public class Compilador extends javax.swing.JFrame {
         gramatica.group("ALFA","(IDENTIFICADOR_REAL REAL punto_coma)",true);
         gramatica.group("ALFA", "IDENTIFICADOR_REAL REAL", true, 2,
             "Error intactico: falta PUNTA Y COMA [#,%]");
+        gramatica.group("ALFA", "IDENTIFICADOR_REAL REAL", true, 2,
+            "Error intactico: error [#,%]");
         gramatica.group("ALFA", "REAL punto_coma", true, 2,
             "Error intactico: falta TIPO DE VARIABLE [#,%]");
 
@@ -376,6 +382,40 @@ public class Compilador extends javax.swing.JFrame {
 
         gramatica.group("DECLARAR", "(ALFA|arreglos|integer)", true, 2,
             "Error intactico: falta DECLARARLA [#,%]");
+
+//si, sinosi, fin
+        gramatica.group("VALIDACION_SINO","(SINO LLAVE_ABRE LLAVE_CIERRA)",true);
+        gramatica.group("VALIDACION_SINO", "((SINO)|(SINO LLAVE_ABRE)|(SINO LLAVE_CIERRA))", true, 2,
+            "Error intactico: falta las llaves [#,%]");
+
+
+
+// condicion 1
+        gramatica.group("CONDICION_UNO","((REAL|ENTERO)(OPERADORES)(REAL|ENTERO))",true);
+        gramatica.group("CONDICION_UNO", "((REAL|ENTERO)(REAL|ENTERO))*", true, 2,
+            "Error intactico:LE FALTA EL OPERADOR [#,%]");
+//CONDICION 2
+        gramatica.group("CONDICION_DOS","(CONDICION_UNO OPERADORES_LOGICOS CONDICION_UNO )",true);
+        gramatica.group("CONDICION_DOS", "((CONDICION_UNO OPERADORES_LOGICOS )|( OPERADORES_LOGICOS CONDICION_UNO)|(OPERADORES_LOGICOS))*", true, 2,
+            "Error intactico: EL OPERADOR LOGICO LO ESTAS USANDO MAL [#,%]");
+
+
+        gramatica.group("VALIDACION","((SI (CONDICION_UNO|CONDICION_DOS) ENTONCES))",true);
+       gramatica.group("VALIDACION", "((SI ENTONCES))", true, 2,
+                       "Error intactico: falta LAS CONDICIONES[#,%]");
+       gramatica.group("VALIDACION", "(SI (CONDICION_UNO|CONDICION_DOS))", true, 2,
+              "Error intactico: falta EL ENTONCES[#,%]");
+        gramatica.group("VALIDACION", "(SI)", true, 2,
+            "Error intactico: falta LAS CONDICIONES Y EL ENTONCES[#,%]");
+
+        gramatica.group("VALIDACION_PARTE_2", "(VALIDACION  LLAVE_ABRE LLAVE_CIERRA (VALIDACION_SINO)? FINSI)", true);
+
+       gramatica.group("VALIDACION_PARTE_2", "(VALIDACION LLAVE_ABRE LLAVE_CIERRA (VALIDACION_SINO)?)", true, 2,
+            "Error intactico: falta FINALIZAR [#,%]");
+        gramatica.group("VALIDACION_PARTE_2", "((VALIDACION  LLAVE_CIERRA (VALIDACION_SINO)?)|(VALIDACION LLAVE_ABRE (VALIDACION_SINO)?)|VALIDACION (VALIDACION_SINO)?)", true, 2,
+            "Error intactico: falta las llaves [#,%]");
+
+
 
 
 

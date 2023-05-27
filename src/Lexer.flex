@@ -66,7 +66,8 @@ Declare { return token(yytext(), "DECLARE", yyline, yycolumn); }
 "=" {return token(yytext(), "op_asignacion", yyline, yycolumn);}
 /*op_logicos*/
 
-SI  {return token(yytext(), "SI", yyline, yycolumn);}
+SI {return token(yytext(), "SI", yyline, yycolumn);}
+   ENTONCES {return token(yytext(), "ENTONCES", yyline, yycolumn);}
  SINO {return token(yytext(), "SINO", yyline, yycolumn);}
 
 FSI {return token(yytext(), "FINSI", yyline, yycolumn);}
@@ -74,6 +75,11 @@ FSI {return token(yytext(), "FINSI", yyline, yycolumn);}
 
 /*operadores*/
 "<"|">"|"=="|"<="|">="|"++"|"--" {return token(yytext(), "OPERADORES", yyline, yycolumn);}
+
+/*operadores*/
+"O"|"&" {return token(yytext(), "OPERADORES_LOGICOS", yyline, yycolumn);}
+
+
 
 /*errores*/
 

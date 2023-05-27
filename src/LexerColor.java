@@ -64,10 +64,11 @@ class LexerColor {
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
     "\11\0\1\1\1\2\1\3\1\1\1\4\22\0\1\1"+
-    "\11\0\1\5\4\0\1\6\61\0\1\7\1\0\1\10"+
-    "\1\11\1\12\6\0\1\13\1\14\1\15\1\16\2\0"+
-    "\1\17\2\0\1\20\17\0\1\3\u01a2\0\2\3\326\0"+
-    "\u0100\3";
+    "\11\0\1\5\4\0\1\6\23\0\1\7\1\0\1\10"+
+    "\1\11\2\0\1\12\4\0\1\13\1\14\3\0\1\15"+
+    "\1\16\14\0\1\17\1\0\1\20\1\21\1\22\6\0"+
+    "\1\23\1\24\1\25\1\26\2\0\1\27\2\0\1\30"+
+    "\17\0\1\3\u01a2\0\2\3\326\0\u0100\3";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[1024];
@@ -94,11 +95,11 @@ class LexerColor {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\2\2\4\1\1\0\1\3\5\0\2\3"+
-    "\4\0\1\3\2\0\1\4\2\0";
+    "\1\0\1\1\2\2\7\1\1\0\1\3\2\0\1\4"+
+    "\5\0\2\3\1\0\1\4\5\0\1\3\10\0";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[27];
+    int [] result = new int[39];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -123,13 +124,14 @@ class LexerColor {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\21\0\21\0\42\0\63\0\104\0\125\0\146"+
-    "\0\167\0\210\0\231\0\252\0\273\0\314\0\335\0\21"+
-    "\0\356\0\377\0\u0110\0\u0121\0\u0132\0\314\0\u0143\0\u0154"+
-    "\0\21\0\u0165\0\u0176";
+    "\0\0\0\31\0\31\0\62\0\113\0\144\0\175\0\226"+
+    "\0\257\0\310\0\341\0\372\0\u0113\0\u012c\0\u0145\0\u015e"+
+    "\0\u0177\0\u0190\0\u01a9\0\u01c2\0\u01db\0\31\0\u01f4\0\u020d"+
+    "\0\31\0\u0226\0\u023f\0\u0258\0\u0271\0\u028a\0\u01c2\0\u02a3"+
+    "\0\u02bc\0\u02d5\0\u02ee\0\u0307\0\u0320\0\u0339\0\u0352";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[27];
+    int [] result = new int[39];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -153,17 +155,21 @@ class LexerColor {
 
   private static final String ZZ_TRANS_PACKED_0 =
     "\1\2\2\3\1\0\1\4\1\2\1\5\1\2\1\6"+
-    "\4\2\1\7\1\2\1\10\1\2\23\0\1\3\23\0"+
-    "\1\11\1\12\21\0\1\13\31\0\1\14\12\0\1\15"+
-    "\6\0\5\16\1\17\13\16\2\12\1\20\1\12\1\21"+
-    "\14\12\11\0\1\22\23\0\1\23\13\0\1\24\11\0"+
-    "\5\16\1\25\20\16\1\25\1\26\12\16\2\0\1\20"+
-    "\30\0\1\27\20\0\1\30\21\0\1\31\5\0\5\16"+
-    "\1\25\1\20\12\16\15\0\1\32\22\0\1\33\10\0"+
-    "\1\31\27\0\1\31\2\0";
+    "\1\7\3\2\1\10\2\2\1\11\4\2\1\12\1\2"+
+    "\1\13\1\2\33\0\1\3\33\0\1\14\1\15\35\0"+
+    "\1\16\32\0\1\17\25\0\1\20\35\0\1\21\41\0"+
+    "\1\22\22\0\1\23\6\0\5\24\1\25\23\24\2\15"+
+    "\1\26\1\15\1\27\24\15\16\0\1\30\24\0\1\31"+
+    "\31\0\1\32\36\0\1\33\33\0\1\34\23\0\1\35"+
+    "\11\0\5\24\1\36\30\24\1\36\1\37\22\24\2\0"+
+    "\1\26\42\0\1\40\30\0\1\31\36\0\1\41\30\0"+
+    "\1\42\31\0\1\31\5\0\5\24\1\36\1\26\22\24"+
+    "\13\0\1\43\42\0\1\44\32\0\1\45\10\0\1\46"+
+    "\40\0\1\31\37\0\1\31\12\0\1\47\35\0\1\31"+
+    "\13\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[391];
+    int [] result = new int[875];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -206,11 +212,11 @@ class LexerColor {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\2\11\5\1\1\0\1\1\5\0\1\11\1\1"+
-    "\4\0\1\1\2\0\1\11\2\0";
+    "\1\0\2\11\10\1\1\0\1\1\2\0\1\1\5\0"+
+    "\1\11\1\1\1\0\1\11\5\0\1\1\10\0";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[27];
+    int [] result = new int[39];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
